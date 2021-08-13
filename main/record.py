@@ -49,22 +49,3 @@ def window_screenshot(windows_number):
     os.system(windows_print)
 
 
-loop_time = time()
-location = window_id()
-while True:
-    # i can make it this run faster if i take the screenshots wihout using this
-    # library
-
-    screenshot = window_screenshot(location)
-    screenshot = cv.imread('screenshot.jpg')
-
-    cv.imshow('computer vision', screenshot)
-
-
-    print('FPS {}'.format(1 / (time() - loop_time)))
-    loop_time = time()
-
-    if cv.waitKey(1) == ord('q'):
-        cv.destroyAllWindows()
-        break
-print("Done")
