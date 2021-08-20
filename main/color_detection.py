@@ -14,13 +14,21 @@ while True:
     height = int(screenshot.shape[0])
 
     hsv = cv.cvtColor(screenshot, cv.COLOR_BGR2HSV)
-    cv.imshow('screenshot', hsv)
-    lower_blue = np.array([])
-    upper_blue = np.array([])
+
+    # choose the colors that are going to be extracted
+    lower_red = np.array([0, 100, 90])
+    upper_red = np.array([19, 51, 69])
+
+    # https://docs.opencv.org/master/da/d97/tutorial_threshold_inRange.html
+    mask = cv.inRange(hsv, lower_red, upper_red)
+
+    # look doc lol
+    result = cv.bitwise_and(hsv, hsv, mask=mask)
 
     # resizing img
     scale = 0.6
     hsv = cv.resize(hsv, None,  fx=scale, fy=scale, interpolation=cv.INTER_LINEAR)
+    cv.imshow('screenshot', result)
 
     print('FPS {}'.format(1 / (time() - loop_time)))
     loop_time = time()

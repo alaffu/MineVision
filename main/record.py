@@ -1,7 +1,4 @@
 import pyautogui
-import numpy as np
-from cv2 import cv2 as cv
-from time import time
 from subprocess import Popen, PIPE
 import os
 
@@ -45,7 +42,10 @@ def window_id():
 
 def window_screenshot(windows_number):
     '''takes screenshot of the right screen'''
-    windows_print = 'import -frame -window {} screenshot.jpg'.format(str(windows_number[0:9]))
+    windows_print = 'import -frame -quality 100 -window {} screenshot.jpg'.format(str(windows_number[0:9]))
     os.system(windows_print)
 
+
+def quick_record(windows_number):
+    img = window_screenshot(windows_number)
 
