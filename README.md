@@ -1,6 +1,6 @@
 # Mine Vision
 The aim of this project is by using real time computer vision to recognize certain block
-do all the necessary steps to get there and mine these blocks automatically.
+it'd be able to do all the necessary steps to get to that block and mine it automatically.
 
 Example: Recognize the white trees and chop them.
 
@@ -14,7 +14,7 @@ For the video capture function I believe it only works on linux specially ubuntu
 * Implement classes
 
 
-## Inspiration for the code:
+### Inspiration for the code:
 [Learn Code By Gaming](https://www.youtube.com/channel/UCD8vb6Bi7_K_78nItq5YITA)
 
 
