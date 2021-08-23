@@ -41,11 +41,6 @@ def window_id():
 
 
 def window_screenshot(windows_number):
-    '''takes screenshot of the right screen'''
-    windows_print = 'import -frame -quality 100 -window {} screenshot.jpg'.format(str(windows_number[0:9]))
+    '''takes screenshot of the respective window'''
+    windows_print = 'import -frame -window {} screenshot.jpg'.format(str(windows_number[0:9]))
     os.system(windows_print)
-
-
-def quick_record(windows_number):
-    img = window_screenshot(windows_number)
-
