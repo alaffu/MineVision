@@ -7,16 +7,16 @@ class Vision:
 
     # properties
     template = None
-    w, h = 0
+    w, h = [0, 0]
     method = None
 
     def __init__(self, template, method=cv.TM_CCOEFF_NORMED):
         self.template = cv.imread(template, 0)
-        self.w, self.h = template.shape[::-1]
+        self.w, self.h = self.template.shape[::-1]
 
         self.method = method
 
-    def findClickPositions(self, img_path, threshold=0.45, debug_mode=None):
+    def find(self, img_path, threshold=0.45, debug_mode=None):
         # truth will represent the state of debug mode, if it returns 0 debug mode
         # didn't run and if it returns 1 it did run.
         truth = 0
@@ -83,10 +83,10 @@ class Vision:
         return points, truth
 
 
-windows_number = window_id()
-while True:
-    window_screenshot(windows_number)
-    points, truth = findClickPositions('screenshot.jpg', "assets/white_trunk.jpg", debug_mode="rectangles")
+# windows_number = window_id()
+# while True:
+#     window_screenshot(windows_number)
+#     points, truth = findClickPositions('screenshot.jpg', "assets/white_trunk.jpg", debug_mode="rectangles")
 
-    if truth == 1:
-        break
+#     if truth == 1:
+#         break
