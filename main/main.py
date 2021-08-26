@@ -8,7 +8,15 @@ vision_whitetrunk = Vision("assets/white_trunk.jpg")
 windows_number = window_id()
 while True:
     window_screenshot(windows_number)
-    points, truth = vision_whitetrunk.find("screenshot.jpg")
+    screenshot = 'screenshot.jpg'
 
-    if truth == 1:
+    # run detection algorithm
+    rectangles = vision_whitetrunk.find(screenshot)
+
+    # draw detection results onto the original image
+    click = vision_whitetrunk.get_click_positions(rectangles)
+    output = vision_whitetrunk.draw_crosshairs(screenshot, click)
+    cv.imshow("Matches", output)
+
+    if cv.waitKey(1) == ord("q"):
         break

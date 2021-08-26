@@ -16,10 +16,9 @@ class Vision:
 
         self.method = method
 
-    def find(self, img_path, threshold=0.45, debug_mode=None):
+    def find(self, img_path, threshold=0.45):
         # truth will represent the state of debug mode, if it returns 0 debug mode
         # didn't run and if it returns 1 it did run.
-        truth = 0
 
         img = cv.imread(img_path)
         img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -43,17 +42,12 @@ class Vision:
         rect_list, weights = cv.groupRectangles(rect_list, 1, 0.5)
         print(rect_list)
 
-        # loop over all the locations and draw their rectangle
+        return rect_list
 
+    def get_click_positions(self, rect_list):
         points = []
+
         if len(rect_list):
-
-            # config for drawMarker function
-            line_color = (0, 255, 0)
-            line_type = cv.LINE_4
-
-            marker_color = (0, 100, 255)
-            # marker_type = cv.MARKER_CROSS
 
             # loop all over the locations and draw their rectangle
             for (x, y, w, h) in rect_list:
@@ -64,24 +58,30 @@ class Vision:
 
                 # save the points
                 points.append((center_x, center_y))
+        return points
 
-                if debug_mode == "rectangles":
-                    # drawing rectangles
-                    top_left = (x, y)
-                    bottom_right = (x + w, y + h)
-                    cv.rectangle(img, top_left, bottom_right, line_color, 2, line_type)
+    def draw_rectangles(self, img, rect_list):
+        # config for drawMarker function
+        img = cv.imread(img)
+        line_color = (0, 255, 0)
+        line_type = cv.LINE_4
 
-                elif debug_mode == "points":
-                    cv.drawMarker(img, (center_x, center_y), marker_color)
+        for (x, y, w, h) in rect_list:
+            top_left = (x, y)
+            bottom_right = (x + w, y + h)
+            cv.rectangle(img, top_left, bottom_right, line_color, 2, line_type)
 
-        if debug_mode:
+        return img
 
-            cv.imshow("img", img)
-            if cv.waitKey(1) == ord("q"):
-                cv.destroyAllWindows()
-                truth = 1
-        return points, truth
+    def draw_crosshairs(self, img, points):
+        img = cv.imread(img)
+        marker_color = (0, 100, 255)
+        # marker_type = cv.MARKER_CROSS
 
+        for (center_x, center_y) in points:
+            cv.drawMarker(img, (center_x, center_y), marker_color)
+
+        return img
 
 # windows_number = window_id()
 # while True:
