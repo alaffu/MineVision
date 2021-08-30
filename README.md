@@ -8,10 +8,10 @@ Example: Recognize the white trees and chop them.
 Using opencv algorithms, the program is able to match a template and return the click points for each iteration of matches.
 For the video capture function I believe it only works on linux specially ubuntu since that’s what I use in my machine.
 
+* Added hsv filter module
+
 ## Problems to be solved
-* Video capture takes too much processing power
 * Video capture may only work on linux
-* Implement classes
 
 
 ## Inspiration for the code:
