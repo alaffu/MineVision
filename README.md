@@ -12,6 +12,7 @@ For the video capture function I believe it only works on linux specially ubuntu
 
 ## Problems to be solved
 * Video capture may only work on linux
+* Working on vision training feature
 
 
 ## Inspiration for the code:
