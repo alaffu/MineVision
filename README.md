@@ -9,6 +9,7 @@ Using opencv algorithms, the program is able to match a template and return the 
 For the video capture function I believe it only works on linux specially ubuntu since that’s what I use in my machine.
 
 * Added hsv filter module
+* Working on vision training feature (checkout creation branch)
 
 ## Problems to be solved
 * Video capture may only work on linux
